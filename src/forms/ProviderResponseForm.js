@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { bindActionCreators, dispatch } from 'redux'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as actions from '../actions'
 import styles from '../css/forms/ProviderResponseForm.css'

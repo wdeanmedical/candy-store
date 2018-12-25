@@ -40,3 +40,7 @@
   font-weight: bold;
 }
 
+.errorMessage {
+  color: #cc0000;
+}
+
