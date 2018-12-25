@@ -8,17 +8,13 @@ import * as Constants from '../constants/constants'
 import styles from '../css/forms/ProviderResponseForm.css'
 
 class ProviderResponseForm extends Component {
-  state = {
-    ambiResponse: null,
-  }
+  state = {}
 
   componentDidMount() {}
 
   sendAmbiResponse = ambiResponse => {
-    console.log(`sendAmbiResponse(${ambiResponse})`)
-    this.setState({ ambiResponse })
-    console.log(`this.state.ambiResponse: ${ambiResponse}`)
-    this.props.sendAmbiResponse({ ambiResponse })
+    const { sendAmbiResponse } = this.props
+    sendAmbiResponse({ ambiResponse })
   }
 
   render() {
@@ -104,17 +100,18 @@ class ProviderResponseForm extends Component {
 
 const mapStateToProps = state => {
   const { providerResponse, ambiResponse } = state.app
-  console.log('mapStateToProps() - providerResponse: ', providerResponse)
-  console.log('mapStateToProps() - ambiResponse: ', ambiResponse)
   return { providerResponse, ambiResponse }
 }
 
 ProviderResponseForm.propTypes = {
+  /* eslint-disable react/forbid-prop-types */
+  sendAmbiResponse: PropTypes.func,
   providerResponse: PropTypes.object,
   ambiResponse: PropTypes.string,
 }
 
 ProviderResponseForm.defaultProps = {
+  sendAmbiResponse: undefined,
   providerResponse: {},
   ambiResponse: null,
 }

@@ -8,7 +8,6 @@ export function sendProviderResponse(response) {
 }
 
 export function sendAmbiResponse(response) {
-  console.log(`action - response: ${response}`)
   return {
     type: AMBI_RESPONSE_SUCCESS,
     payload: response,

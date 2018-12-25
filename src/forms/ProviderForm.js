@@ -202,7 +202,6 @@ class ProviderForm extends Component {
 
 const mapStateToProps = state => {
   const { ambiResponse } = state.app
-  console.log('mapStateToProps() - ambiResponse: ', ambiResponse)
   return ambiResponse || {}
 }
 
