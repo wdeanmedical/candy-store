@@ -22,7 +22,7 @@ class ProviderResponseForm extends Component {
   }
 
   render() {
-    const { providerResponse } = this.props
+    const { providerResponse, ambiResponse } = this.props
     return (
       <div className={styles.root}>
         <div className={styles.title}>submitted suggestion form</div>
@@ -70,7 +70,12 @@ class ProviderResponseForm extends Component {
                 <img
                   width="30"
                   height="30"
-                  src={Images.thumbsDownButton}
+                  src={
+                    ambiResponse &&
+                    ambiResponse.ambiResponse === Constants.REJECT
+                      ? Images.thumbsDownButtonSubmitted
+                      : Images.thumbsDownButton
+                  }
                   className={styles.rejectButton}
                   alt=""
                   onClick={() => this.sendAmbiResponse(Constants.REJECT)}
@@ -78,7 +83,12 @@ class ProviderResponseForm extends Component {
                 <img
                   width="30"
                   height="30"
-                  src={Images.thumbsUpButton}
+                  src={
+                    ambiResponse &&
+                    ambiResponse.ambiResponse === Constants.ACCEPT
+                      ? Images.thumbsUpButtonSubmitted
+                      : Images.thumbsUpButton
+                  }
                   className={styles.acceptButton}
                   alt=""
                   onClick={() => this.sendAmbiResponse(Constants.ACCEPT)}
@@ -93,17 +103,20 @@ class ProviderResponseForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { providerResponse } = state.app
+  const { providerResponse, ambiResponse } = state.app
   console.log('mapStateToProps() - providerResponse: ', providerResponse)
-  return { providerResponse }
+  console.log('mapStateToProps() - ambiResponse: ', ambiResponse)
+  return { providerResponse, ambiResponse }
 }
 
 ProviderResponseForm.propTypes = {
   providerResponse: PropTypes.object,
+  ambiResponse: PropTypes.string,
 }
 
 ProviderResponseForm.defaultProps = {
   providerResponse: {},
+  ambiResponse: null,
 }
 
 export default connect(
