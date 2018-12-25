@@ -106,7 +106,8 @@ input[type="text"]:disabled {
 .ambiResponseIcons {
   display: flex;
   justify-content: space-between;
-  width: 95px;
+  width: 65px;
+  margin-right: 10px;
 }
 
 .iconSelected {

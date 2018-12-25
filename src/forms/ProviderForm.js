@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Images from '@local/assets'
 import * as actions from '../actions'
 import * as Constants from '../constants/constants'
 import styles from '../css/forms/ProviderForm.css'
@@ -171,20 +172,26 @@ class ProviderForm extends Component {
               candy store rep response:
             </div>
             <div className={styles.ambiResponseIcons}>
-              <div
-                className={
-                  ambiResponse === Constants.REJECT ? styles.iconSelected : ''
+              <img
+                width="20"
+                height="20"
+                src={
+                  ambiResponse === Constants.REJECT
+                    ? Images.thumbsDownSubmitted
+                    : Images.thumbsDown
                 }
-              >
-                Reject
-              </div>
-              <div
-                className={
-                  ambiResponse === Constants.ACCEPT ? styles.iconSelected : ''
+                alt=""
+              />
+              <img
+                width="20"
+                height="20"
+                src={
+                  ambiResponse === Constants.ACCEPT
+                    ? Images.thumbsUpSubmitted
+                    : Images.thumbsUp
                 }
-              >
-                Accept
-              </div>
+                alt=""
+              />
             </div>
           </div>
         )}

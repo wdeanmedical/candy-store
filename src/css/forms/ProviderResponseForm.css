@@ -53,10 +53,27 @@
 }
 
 .responseControls {
+  display: flex;
+  justify-content: space-between;
+  width: 75px;
+  margin-top: 10px;
+  margin-left: 25px;
 }
 
-.rejectButton {
+.acceptButton:hover {
+  content:url("../../assets/images/thumbs-up-button-hover.png");
+  cursor: pointer;
 }
 
-.acceptButton {
+.acceptButtonSubmitted {
+  content:url("../../assets/images/thumbs-up-button-submitted.png");
+}
+
+.rejectButton:hover {
+  content:url("../../assets/images/thumbs-down-button-hover.png");
+  cursor: pointer;
+}
+
+.rejectButtonSubmitted {
+  content:url("../../assets/images/thumbs-down-button-submitted.png");
 }

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import Images from '@local/assets/index'
 import * as actions from '../actions'
 import * as Constants from '../constants/constants'
 import styles from '../css/forms/ProviderResponseForm.css'
@@ -66,18 +67,22 @@ class ProviderResponseForm extends Component {
                 submit a response:
               </div>
               <div className={styles.responseControls}>
-                <button
+                <img
+                  width="30"
+                  height="30"
+                  src={Images.thumbsDownButton}
                   className={styles.rejectButton}
+                  alt=""
                   onClick={() => this.sendAmbiResponse(Constants.REJECT)}
-                >
-                  Reject
-                </button>
-                <button
+                />
+                <img
+                  width="30"
+                  height="30"
+                  src={Images.thumbsUpButton}
                   className={styles.acceptButton}
+                  alt=""
                   onClick={() => this.sendAmbiResponse(Constants.ACCEPT)}
-                >
-                  Accept
-                </button>
+                />
               </div>
             </div>
           </div>
