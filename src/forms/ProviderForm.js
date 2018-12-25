@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as actions from '../actions'
+import * as Constants from '../constants/constants'
 import styles from '../css/forms/ProviderForm.css'
 
 class ProviderForm extends Component {
@@ -14,6 +15,8 @@ class ProviderForm extends Component {
     specialty: '',
     price: '',
     message: 'enter your suggestion details:',
+    title: 'suggestion submission form:',
+    submitted: false,
     errors: {},
   }
 
@@ -29,18 +32,18 @@ class ProviderForm extends Component {
     const errors = {}
     let isValid = true
 
-    const pattern = new RegExp(
+    const urlPattern = new RegExp(
       /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
     )
-    if (!pattern.test(website)) {
+    if (!urlPattern.test(website)) {
       isValid = false
       errors.website = 'enter a valid website url...'
     }
 
-    const pattern2 = new RegExp(
+    const emailPattern = new RegExp(
       /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
     )
-    if (!pattern2.test(email)) {
+    if (!emailPattern.test(email)) {
       isValid = false
       errors.email = 'enter a valid email address...'
     }
@@ -55,6 +58,8 @@ class ProviderForm extends Component {
     if (this.validateForm()) {
       this.props.sendProviderResponse(providerResponse)
       this.setState({
+        submitted: true,
+        title: 'submitted suggestion form',
         message:
           'a rep will respond to your suggestion soon! here is what you submitted:',
       })
@@ -64,6 +69,7 @@ class ProviderForm extends Component {
   render() {
     const { ambiResponse } = this.props
     const {
+      title,
       message,
       name,
       company,
@@ -71,16 +77,18 @@ class ProviderForm extends Component {
       email,
       specialty,
       price,
+      submitted,
       errors,
     } = this.state
     return (
       <div className={styles.root}>
-        <div className={styles.title}>suggestion submission form</div>
+        <div className={styles.title}>{title}</div>
         <div className={styles.subtitle}>{message}</div>
         <div className={styles.formItem}>
           <div className={styles.formItemLabel}>name:</div>
           <input
             type="text"
+            disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter your name..."
             value={name}
@@ -91,16 +99,18 @@ class ProviderForm extends Component {
           <div className={styles.formItemLabel}>company:</div>
           <input
             type="text"
+            disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter your company name..."
             value={company}
             onChange={e => this.setState({ company: e.target.value })}
           />
         </div>
-        <div className={styles.formItem}>
+        <div className={styles.formItemWithMessage}>
           <div className={styles.formItemLabel}>website:</div>
           <input
             type="text"
+            disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter your company website..."
             value={website}
@@ -108,10 +118,11 @@ class ProviderForm extends Component {
           />
           <div className={styles.errorMessage}>{errors.website}</div>
         </div>
-        <div className={styles.formItem}>
+        <div className={styles.formItemWithMessage}>
           <div className={styles.formItemLabel}>email address:</div>
           <input
             type="text"
+            disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter your email address..."
             value={email}
@@ -125,6 +136,7 @@ class ProviderForm extends Component {
           </div>
           <input
             type="text"
+            disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter a candy name..."
             value={specialty}
@@ -135,13 +147,14 @@ class ProviderForm extends Component {
           <div className={styles.formItemLabel}>price per unit:</div>
           <input
             type="text"
+            disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter a suggested price..."
             value={price}
             onChange={e => this.setState({ price: e.target.value })}
           />
         </div>
-        {ambiResponse === null && (
+        {submitted === false && (
           <div className={styles.formControls}>
             <button
               className={styles.formSubmitButton}
@@ -152,19 +165,23 @@ class ProviderForm extends Component {
           </div>
         )}
 
-        {ambiResponse && (
+        {submitted && (
           <div className={styles.ambiResponse}>
             <div className={styles.ambiResponseTitle}>
               candy store rep response:
             </div>
             <div className={styles.ambiResponseIcons}>
               <div
-                className={ambiResponse === 'reject' ? styles.iconSelected : ''}
+                className={
+                  ambiResponse === Constants.REJECT ? styles.iconSelected : ''
+                }
               >
                 Reject
               </div>
               <div
-                className={ambiResponse === 'accept' ? styles.iconSelected : ''}
+                className={
+                  ambiResponse === Constants.ACCEPT ? styles.iconSelected : ''
+                }
               >
                 Accept
               </div>

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import * as actions from '../actions'
+import * as Constants from '../constants/constants'
 import styles from '../css/forms/ProviderResponseForm.css'
 
 class ProviderResponseForm extends Component {
@@ -31,7 +32,7 @@ class ProviderResponseForm extends Component {
         )}
         {providerResponse && (
           <div>
-            <div className={styles.subtitle}>suggestion:</div>
+            <div className={styles.providerResponseTitle}>suggestion:</div>
 
             <div className={styles.providerResponse}>
               <div className={styles.providerResponseItem}>
@@ -41,7 +42,13 @@ class ProviderResponseForm extends Component {
                 {providerResponse.company}
               </div>
               <div className={styles.providerResponseItem}>
-                {providerResponse.website}
+                <a
+                  href={providerResponse.website}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {providerResponse.website}
+                </a>
               </div>
               <div className={styles.providerResponseItem}>
                 {providerResponse.email}
@@ -61,13 +68,13 @@ class ProviderResponseForm extends Component {
               <div className={styles.responseControls}>
                 <button
                   className={styles.rejectButton}
-                  onClick={() => this.sendAmbiResponse('reject')}
+                  onClick={() => this.sendAmbiResponse(Constants.REJECT)}
                 >
                   Reject
                 </button>
                 <button
                   className={styles.acceptButton}
-                  onClick={() => this.sendAmbiResponse('accept')}
+                  onClick={() => this.sendAmbiResponse(Constants.ACCEPT)}
                 >
                   Accept
                 </button>

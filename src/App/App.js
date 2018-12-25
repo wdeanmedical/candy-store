@@ -10,6 +10,7 @@ class App extends Component {
     return (
       <div className={styles.root}>
         <ProviderForm />
+        <div className={styles.screenDivider} />
         <ProviderResponseForm />
       </div>
     )
