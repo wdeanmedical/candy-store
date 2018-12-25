@@ -1,11 +1,23 @@
-import { FETCH_DATA } from '../actions/types'
+import {
+  PROVIDER_RESPONSE_SUCCESS,
+  AMBI_RESPONSE_SUCCESS,
+} from '../actions/types'
 
-export default function(state = {}, action) {
+const INITIAL_STATE = {
+  providerResponse: null,
+  ambiResponse: null,
+}
+
+export default function(state = INITIAL_STATE, action) {
   console.log('App reducer action.type', action.type)
 
   switch (action.type) {
-    case FETCH_DATA:
-      return { ...state.simpleData, data: 'A0B3HCJ' }
+    case PROVIDER_RESPONSE_SUCCESS:
+      console.log('state.providerResponse', action.payload)
+      return { ...state, providerResponse: action.payload }
+    case AMBI_RESPONSE_SUCCESS:
+      console.log('state.ambiResponse', action.payload)
+      return { ...state, ambiResponse: action.payload }
     default:
       return state
   }

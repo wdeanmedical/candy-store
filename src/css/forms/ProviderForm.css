@@ -1,0 +1,42 @@
+.root {
+  width: 400px;
+}
+
+.formItem {
+}
+
+.formItemLabel {
+}
+
+.formItemInput {
+  width: 100%;
+}
+
+.formControls {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.formSubmitButton {
+}
+
+.title {
+}
+
+.subtitle {
+}
+
+.ambiResponse {
+  display: flex;
+  justify-content: space-between;
+}
+.ambiResponseIcons {
+  display: flex;
+  justify-content: space-between;
+  width: 95px;
+}
+
+.iconSelected {
+  font-weight: bold;
+}
+
