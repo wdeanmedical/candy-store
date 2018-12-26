@@ -1,5 +1,5 @@
 .root {
-  width: 500px;
+  width: 480px;
   background-color: white;
   border-width: 2px;
   border-radius: var(--cardBorderRadius);
@@ -26,7 +26,7 @@
 }
 
 .formItemInput {
-  width: 100%;
+  width: 95%;
   font-size: 14px;
   color: var(--ambiBlack);
   height: 38px;
@@ -108,10 +108,6 @@ input[type="text"]:disabled {
   justify-content: space-between;
   width: 65px;
   margin-right: 10px;
-}
-
-.iconSelected {
-  font-weight: bold;
 }
 
 .errorMessage {
