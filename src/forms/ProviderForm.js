@@ -18,6 +18,7 @@ class ProviderForm extends Component {
     title: 'suggestion submission form:',
     submitted: false,
     errors: {},
+    fields: {},
   }
 
   componentDidMount() {}
@@ -27,7 +28,7 @@ class ProviderForm extends Component {
       errors: {},
     })
 
-    const { email, website } = this.state
+    const { fields } = this.state
 
     const errors = {}
     let isValid = true
@@ -35,7 +36,7 @@ class ProviderForm extends Component {
     const urlPattern = new RegExp(
       /(^|\s)((https?:\/\/)?[\w-]+(\.[\w-]+)+\.?(:\d+)?(\/\S*)?)/gi
     )
-    if (!urlPattern.test(website)) {
+    if (!urlPattern.test(fields.website)) {
       isValid = false
       errors.website = 'enter a valid website url...'
     }
@@ -43,7 +44,7 @@ class ProviderForm extends Component {
     const emailPattern = new RegExp(
       /^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i
     )
-    if (!emailPattern.test(email)) {
+    if (!emailPattern.test(fields.email)) {
       isValid = false
       errors.email = 'enter a valid email address...'
     }
@@ -52,11 +53,12 @@ class ProviderForm extends Component {
   }
 
   submitForm = () => {
-    const { name, company, website, email, specialty, price } = this.state
-    const providerResponse = { name, company, website, email, specialty, price }
+    const { fields } = this.state
+    const providerResponse = fields
+    const { sendProviderResponse } = this.props
 
     if (this.validateForm()) {
-      this.props.sendProviderResponse(providerResponse)
+      sendProviderResponse(providerResponse)
       this.setState({
         submitted: true,
         title: 'submitted suggestion form',
@@ -66,20 +68,15 @@ class ProviderForm extends Component {
     }
   }
 
+  handleFieldChange = (field, e) => {
+    const { fields } = this.state
+    fields[field] = e.target.value
+    this.setState({ fields })
+  }
+
   render() {
     const { ambiResponse } = this.props
-    const {
-      title,
-      message,
-      name,
-      company,
-      website,
-      email,
-      specialty,
-      price,
-      submitted,
-      errors,
-    } = this.state
+    const { title, message, submitted, fields, errors } = this.state
     return (
       <div className={styles.root}>
         <div className={styles.title}>{title}</div>
@@ -91,8 +88,8 @@ class ProviderForm extends Component {
             disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter your name..."
-            value={name}
-            onChange={e => this.setState({ name: e.target.value })}
+            value={fields.name}
+            onChange={e => this.handleFieldChange('name', e)}
           />
         </div>
         <div className={styles.formItem}>
@@ -102,8 +99,8 @@ class ProviderForm extends Component {
             disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter your company name..."
-            value={company}
-            onChange={e => this.setState({ company: e.target.value })}
+            value={fields.company}
+            onChange={e => this.handleFieldChange('company', e)}
           />
         </div>
         <div className={styles.formItemWithMessage}>
@@ -113,8 +110,8 @@ class ProviderForm extends Component {
             disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter your company website..."
-            value={website}
-            onChange={e => this.setState({ website: e.target.value })}
+            value={fields.website}
+            onChange={e => this.handleFieldChange('website', e)}
           />
           <div className={styles.errorMessage}>{errors.website}</div>
         </div>
@@ -125,8 +122,8 @@ class ProviderForm extends Component {
             disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter your email address..."
-            value={email}
-            onChange={e => this.setState({ email: e.target.value })}
+            value={fields.email}
+            onChange={e => this.handleFieldChange('email', e)}
           />
           <div className={styles.errorMessage}>{errors.email}</div>
         </div>
@@ -139,8 +136,8 @@ class ProviderForm extends Component {
             disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter a candy name..."
-            value={specialty}
-            onChange={e => this.setState({ specialty: e.target.value })}
+            value={fields.specialty}
+            onChange={e => this.handleFieldChange('specialty', e)}
           />
         </div>
         <div className={styles.formItem}>
@@ -150,8 +147,8 @@ class ProviderForm extends Component {
             disabled={submitted === true}
             className={styles.formItemInput}
             placeholder="enter a suggested price..."
-            value={price}
-            onChange={e => this.setState({ price: e.target.value })}
+            value={fields.price}
+            onChange={e => this.handleFieldChange('price', e)}
           />
         </div>
         {submitted === false && (
@@ -206,10 +203,12 @@ const mapStateToProps = state => {
 
 ProviderForm.propTypes = {
   ambiResponse: PropTypes.string,
+  sendProviderResponse: PropTypes.func,
 }
 
 ProviderForm.defaultProps = {
   ambiResponse: null,
+  sendProviderResponse: undefined,
 }
 
 export default connect(
