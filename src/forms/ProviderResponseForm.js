@@ -7,7 +7,10 @@ import * as Constants from '../constants/constants'
 import styles from '../css/forms/ProviderResponseForm.css'
 
 class ProviderResponseForm extends Component {
-  state = {}
+  state = {
+    acceptImage: Images.thumbsUpButton,
+    rejectImage: Images.thumbsDownButton,
+  }
 
   componentDidMount() {}
 
@@ -18,6 +21,7 @@ class ProviderResponseForm extends Component {
 
   render() {
     const { providerResponse, ambiResponse } = this.props
+    const { acceptImage, rejectImage } = this.state
     return (
       <div className={styles.root}>
         <div className={styles.title}>submitted suggestion form</div>
@@ -69,10 +73,20 @@ class ProviderResponseForm extends Component {
                     ambiResponse &&
                     ambiResponse.ambiResponse === Constants.REJECT
                       ? Images.thumbsDownButtonSubmitted
-                      : Images.thumbsDownButton
+                      : rejectImage
                   }
+                  onMouseEnter={() => {
+                    this.setState({
+                      rejectImage: Images.thumbsDownButtonHover,
+                    })
+                  }}
+                  onMouseOut={() => {
+                    this.setState({
+                      rejectImage: Images.thumbsDownButton,
+                    })
+                  }}
                   className={styles.rejectButton}
-                  alt=""
+                  alt="reject"
                   onClick={() => this.sendAmbiResponse(Constants.REJECT)}
                 />
                 <img
@@ -82,10 +96,20 @@ class ProviderResponseForm extends Component {
                     ambiResponse &&
                     ambiResponse.ambiResponse === Constants.ACCEPT
                       ? Images.thumbsUpButtonSubmitted
-                      : Images.thumbsUpButton
+                      : acceptImage
                   }
+                  onMouseEnter={() => {
+                    this.setState({
+                      acceptImage: Images.thumbsUpButtonHover,
+                    })
+                  }}
+                  onMouseOut={() => {
+                    this.setState({
+                      acceptImage: Images.thumbsUpButton,
+                    })
+                  }}
                   className={styles.acceptButton}
-                  alt=""
+                  alt="accept"
                   onClick={() => this.sendAmbiResponse(Constants.ACCEPT)}
                 />
               </div>

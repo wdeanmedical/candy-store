@@ -175,7 +175,7 @@ class ProviderForm extends Component {
                     ? Images.thumbsDownSubmitted
                     : Images.thumbsDown
                 }
-                alt=""
+                alt="reject"
               />
               <img
                 width="20"
@@ -185,14 +185,18 @@ class ProviderForm extends Component {
                     ? Images.thumbsUpSubmitted
                     : Images.thumbsUp
                 }
-                alt=""
+                alt="accept"
               />
             </div>
           </div>
         )}
         <div className={overlay === true ? styles.overlay : styles.displayNone}>
           <div className={styles.overlayContent}>
-            <img src={Images.checkMark} className={styles.checkMark} alt="" />
+            <img
+              src={Images.checkMark}
+              className={styles.checkMark}
+              alt="check mark"
+            />
             <div className={styles.overlayText}>Form Submitted!</div>
           </div>
         </div>
