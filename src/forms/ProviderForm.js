@@ -8,17 +8,12 @@ import styles from '../css/forms/ProviderForm.css'
 
 class ProviderForm extends Component {
   state = {
-    name: '',
-    company: '',
-    website: '',
-    email: '',
-    specialty: '',
-    price: '',
     message: 'enter your suggestion details:',
     title: 'suggestion submission form:',
     submitted: false,
     errors: {},
     fields: {},
+    overlay: false,
   }
 
   componentDidMount() {}
@@ -64,7 +59,11 @@ class ProviderForm extends Component {
         title: 'submitted suggestion form',
         message:
           'a rep will respond to your suggestion soon! here is what you submitted:',
+        overlay: true,
       })
+      setTimeout(() => {
+        this.setState({ overlay: false })
+      }, 2200)
     }
   }
 
@@ -76,7 +75,7 @@ class ProviderForm extends Component {
 
   render() {
     const { ambiResponse } = this.props
-    const { title, message, submitted, fields, errors } = this.state
+    const { title, message, submitted, fields, errors, overlay } = this.state
     return (
       <div className={styles.root}>
         <div className={styles.title}>{title}</div>
@@ -191,6 +190,12 @@ class ProviderForm extends Component {
             </div>
           </div>
         )}
+        <div className={overlay === true ? styles.overlay : styles.displayNone}>
+          <div className={styles.overlayContent}>
+            <img src={Images.checkMark} className={styles.checkMark} alt="" />
+            <div className={styles.overlayText}>Form Submitted!</div>
+          </div>
+        </div>
       </div>
     )
   }

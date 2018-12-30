@@ -6,6 +6,7 @@
   border-color:var(--cardBorderColor);
   box-shadow: var(--cardShadow);
   padding: 20px;
+  position: relative;
 }
 
 .formItem {
@@ -117,3 +118,60 @@ input[type="text"]:disabled {
   min-height: 18px;
 }
 
+.overlay {
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background-color:rgba(255, 255, 255, 0.4);
+  z-index:9999;
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.2s;
+  display: block;
+}
+
+.displayNone {
+  display: none;
+}
+
+
+.overlay:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -0.25em;
+}
+
+.overlayContent {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.overlayText {
+  font-family: 'Arial-BoldMT', sans-serif ;
+  color: var(--ambiBlack);
+  font-size: 16px;
+}
+
+.checkMark {
+  margin-left: 50px;
+  height: 20px;
+  width: 28px;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

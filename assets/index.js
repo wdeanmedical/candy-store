@@ -1,5 +1,6 @@
 /* eslint global-require: 0 */
 const images = {
+  checkMark: require('./images/check-mark.png'),
   thumbsDown: require('./images/thumbs-down.png'),
   thumbsDownButton: require('./images/thumbs-down-button.png'),
   thumbsDownButtonHover: require('./images/thumbs-down-button-hover.png'),
