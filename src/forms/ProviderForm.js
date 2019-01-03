@@ -11,8 +11,8 @@ class ProviderForm extends Component {
     message: 'enter your suggestion details:',
     title: 'suggestion submission form:',
     submitted: false,
-    errors: {},
     fields: {},
+    errors: {},
     overlay: false,
   }
 

@@ -127,10 +127,18 @@ const mapStateToProps = state => {
 }
 
 ProviderResponseForm.propTypes = {
-  /* eslint-disable react/forbid-prop-types */
   sendAmbiResponse: PropTypes.func,
-  providerResponse: PropTypes.object,
-  ambiResponse: PropTypes.string,
+  providerResponse: PropTypes.shape({
+    name: PropTypes.string,
+    company: PropTypes.string,
+    email: PropTypes.string,
+    website: PropTypes.string,
+    specialty: PropTypes.string,
+    price: PropTypes.string,
+  }),
+  ambiResponse: PropTypes.shape({
+    ambiResponse: PropTypes.string,
+  }),
 }
 
 ProviderResponseForm.defaultProps = {
