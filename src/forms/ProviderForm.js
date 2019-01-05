@@ -70,105 +70,33 @@ class ProviderForm extends Component {
 
   handleFieldChange = (field, e) => {
     const { fields } = this.state
-    console.log('handleFieldChange field: ', field)
-    console.log('handleFieldChange e.target.value:', e.target.value)
     fields[field] = e.target.value
     this.setState({ fields })
   }
 
   formMapper(field) {
     const { FormComponent } = field
+    const { fields, errors } = this.state
     return (
       <FormComponent
         field={field}
         submitted={false}
         handleFieldChange={this.handleFieldChange}
         key={field.id}
-        value={this.state.fields[field.name]}
+        value={fields[field.name]}
+        errorMessage={errors[field.name]}
       />
     )
   }
 
   render() {
     const { ambiResponse } = this.props
-    const { title, message, submitted, fields, errors, overlay } = this.state
+    const { title, message, submitted, overlay } = this.state
     return (
       <div className={styles.root}>
         <div className={styles.title}>{title}</div>
         <div className={styles.subtitle}>{message}</div>
-
         {form.map(this.formMapper, this)}
-
-        <div className={styles.formItem}>
-          <div className={styles.formItemLabel}>name:</div>
-          <input
-            type="text"
-            disabled={submitted === true}
-            className={styles.formItemInput}
-            placeholder="enter your name..."
-            value={fields.name}
-            onChange={e => this.handleFieldChange('name', e)}
-          />
-        </div>
-        <div className={styles.formItem}>
-          <div className={styles.formItemLabel}>company:</div>
-          <input
-            type="text"
-            disabled={submitted === true}
-            className={styles.formItemInput}
-            placeholder="enter your company name..."
-            value={fields.company}
-            onChange={e => this.handleFieldChange('company', e)}
-          />
-        </div>
-        <div className={styles.formItemWithMessage}>
-          <div className={styles.formItemLabel}>website:</div>
-          <input
-            type="text"
-            disabled={submitted === true}
-            className={styles.formItemInput}
-            placeholder="enter your company website..."
-            value={fields.website}
-            onChange={e => this.handleFieldChange('website', e)}
-          />
-          <div className={styles.errorMessage}>{errors.website}</div>
-        </div>
-        <div className={styles.formItemWithMessage}>
-          <div className={styles.formItemLabel}>email address:</div>
-          <input
-            type="text"
-            disabled={submitted === true}
-            className={styles.formItemInput}
-            placeholder="enter your email address..."
-            value={fields.email}
-            onChange={e => this.handleFieldChange('email', e)}
-          />
-          <div className={styles.errorMessage}>{errors.email}</div>
-        </div>
-        <div className={styles.formItem}>
-          <div className={styles.formItemLabel}>
-            top candy specialty (enter only one):
-          </div>
-          <input
-            type="text"
-            disabled={submitted === true}
-            className={styles.formItemInput}
-            placeholder="enter a candy name..."
-            value={fields.specialty}
-            onChange={e => this.handleFieldChange('specialty', e)}
-          />
-        </div>
-        <div className={styles.formItem}>
-          <div className={styles.formItemLabel}>price per unit:</div>
-          <input
-            type="text"
-            disabled={submitted === true}
-            className={styles.formItemInput}
-            placeholder="enter a suggested price..."
-            value={fields.price}
-            onChange={e => this.handleFieldChange('price', e)}
-          />
-        </div>
         {submitted === false && (
           <div className={styles.formControls}>
             <button
