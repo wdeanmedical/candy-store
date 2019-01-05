@@ -4,7 +4,9 @@ import PropTypes from 'prop-types'
 import Images from '@local/assets'
 import * as actions from '../actions'
 import * as Constants from '../constants/constants'
+import form from '../config/fields'
 import styles from '../css/forms/ProviderForm.css'
+import TextInput from '../components/TextInput'
 
 class ProviderForm extends Component {
   state = {
@@ -73,6 +75,17 @@ class ProviderForm extends Component {
     this.setState({ fields })
   }
 
+  formMapper(field) {
+    const { FormComponent, name } = field
+    return (
+      <FormComponent
+        field={field}
+        submitted={false}
+        handleFieldChange={e => this.handleFieldChange(name, e)}
+      />
+    )
+  }
+
   render() {
     const { ambiResponse } = this.props
     const { title, message, submitted, fields, errors, overlay } = this.state
@@ -80,6 +93,9 @@ class ProviderForm extends Component {
       <div className={styles.root}>
         <div className={styles.title}>{title}</div>
         <div className={styles.subtitle}>{message}</div>
+
+        {form.map(this.formMapper)}
+
         <div className={styles.formItem}>
           <div className={styles.formItemLabel}>name:</div>
           <input
