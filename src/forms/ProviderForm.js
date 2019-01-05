@@ -6,7 +6,6 @@ import * as actions from '../actions'
 import * as Constants from '../constants/constants'
 import form from '../config/fields'
 import styles from '../css/forms/ProviderForm.css'
-import TextInput from '../components/TextInput'
 
 class ProviderForm extends Component {
   state = {
@@ -71,17 +70,21 @@ class ProviderForm extends Component {
 
   handleFieldChange = (field, e) => {
     const { fields } = this.state
+    console.log('handleFieldChange field: ', field)
+    console.log('handleFieldChange e.target.value:', e.target.value)
     fields[field] = e.target.value
     this.setState({ fields })
   }
 
   formMapper(field) {
-    const { FormComponent, name } = field
+    const { FormComponent } = field
     return (
       <FormComponent
         field={field}
         submitted={false}
-        handleFieldChange={e => this.handleFieldChange(name, e)}
+        handleFieldChange={this.handleFieldChange}
+        key={field.id}
+        value={this.state.fields[field.name]}
       />
     )
   }
@@ -94,7 +97,7 @@ class ProviderForm extends Component {
         <div className={styles.title}>{title}</div>
         <div className={styles.subtitle}>{message}</div>
 
-        {form.map(this.formMapper)}
+        {form.map(this.formMapper, this)}
 
         <div className={styles.formItem}>
           <div className={styles.formItemLabel}>name:</div>

@@ -3,6 +3,7 @@ import TextInput from '../components/TextInput'
 
 export default [
   {
+    id: 1,
     name: 'name',
     label: 'name:',
     placeholder: 'enter your name...',
@@ -14,6 +15,7 @@ export default [
     onClick: undefined,
   },
   {
+    id: 2,
     name: 'company',
     label: 'company:',
     placeholder: 'enter your company name...',
@@ -25,6 +27,7 @@ export default [
     onClick: undefined,
   },
   {
+    id: 3,
     name: 'website',
     label: 'website:',
     placeholder: 'enter your company website...',
@@ -36,6 +39,7 @@ export default [
     onClick: undefined,
   },
   {
+    id: 4,
     name: 'email',
     label: 'email address:',
     placeholder: 'enter your email address...',
@@ -47,6 +51,7 @@ export default [
     onClick: undefined,
   },
   {
+    id: 5,
     name: 'specialty',
     label: 'top candy specialty (enter only one):',
     placeholder: 'enter a candy name...',
@@ -58,6 +63,7 @@ export default [
     onClick: undefined,
   },
   {
+    id: 6,
     name: 'price',
     label: 'price per unit',
     placeholder: 'enter a suggested price...',
