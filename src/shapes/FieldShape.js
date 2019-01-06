@@ -6,7 +6,7 @@ export default {
   placeholder: PropTypes.string,
   type: PropTypes.string,
   value: PropTypes.string,
-  state: PropTypes.bool,
+  state: PropTypes.string,
   onChange: PropTypes.func,
   onClick: PropTypes.func,
 }

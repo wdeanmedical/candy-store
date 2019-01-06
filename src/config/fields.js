@@ -1,5 +1,5 @@
 import * as Constants from '../constants/constants'
-import TextInput from '../components/TextInput'
+import FormTextInput from '../components/FormTextInput'
 
 export default [
   {
@@ -7,7 +7,7 @@ export default [
     name: 'name',
     label: 'name:',
     placeholder: 'enter your name...',
-    FormComponent: TextInput,
+    FormComponent: FormTextInput,
     value: '',
     state: Constants.ENABLED,
     style: '',
@@ -19,7 +19,7 @@ export default [
     name: 'company',
     label: 'company:',
     placeholder: 'enter your company name...',
-    FormComponent: TextInput,
+    FormComponent: FormTextInput,
     value: '',
     state: Constants.ENABLED,
     style: '',
@@ -31,7 +31,7 @@ export default [
     name: 'website',
     label: 'website:',
     placeholder: 'enter your company website...',
-    FormComponent: TextInput,
+    FormComponent: FormTextInput,
     value: '',
     state: Constants.ENABLED,
     style: '',
@@ -43,7 +43,7 @@ export default [
     name: 'email',
     label: 'email address:',
     placeholder: 'enter your email address...',
-    FormComponent: TextInput,
+    FormComponent: FormTextInput,
     value: '',
     state: Constants.ENABLED,
     style: '',
@@ -55,7 +55,7 @@ export default [
     name: 'specialty',
     label: 'top candy specialty (enter only one):',
     placeholder: 'enter a candy name...',
-    FormComponent: TextInput,
+    FormComponent: FormTextInput,
     value: '',
     state: Constants.ENABLED,
     style: '',
@@ -67,7 +67,7 @@ export default [
     name: 'price',
     label: 'price per unit',
     placeholder: 'enter a suggested price...',
-    FormComponent: TextInput,
+    FormComponent: FormTextInput,
     value: '',
     state: Constants.ENABLED,
     style: '',

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import FieldShape from '../shapes/FieldShape'
 import styles from '../css/forms/ProviderForm.css'
 
-const TextInput = props => {
+const FormTextInput = props => {
   const { field, submitted, handleFieldChange, value, errorMessage } = props
   return (
     <div className={styles.formItemWithMessage}>
@@ -21,7 +21,7 @@ const TextInput = props => {
   )
 }
 
-TextInput.propTypes = {
+FormTextInput.propTypes = {
   handleFieldChange: PropTypes.func,
   submitted: PropTypes.bool,
   value: PropTypes.string,
@@ -29,7 +29,7 @@ TextInput.propTypes = {
   field: PropTypes.shape(FieldShape),
 }
 
-TextInput.defaultProps = {
+FormTextInput.defaultProps = {
   handleFieldChange: undefined,
   submitted: false,
   value: '',
@@ -37,4 +37,4 @@ TextInput.defaultProps = {
   field: {},
 }
 
-export default TextInput
+export default FormTextInput
