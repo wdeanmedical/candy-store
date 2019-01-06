@@ -76,11 +76,11 @@ class ProviderForm extends Component {
 
   formMapper(field) {
     const { FormComponent } = field
-    const { fields, errors } = this.state
+    const { fields, errors, submitted } = this.state
     return (
       <FormComponent
         field={field}
-        submitted={false}
+        submitted={submitted}
         handleFieldChange={this.handleFieldChange}
         key={field.id}
         value={fields[field.name]}
