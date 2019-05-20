@@ -1,10 +1,10 @@
-# Ambi Candy Store
+# Candy Store
 
 ### Getting Started
 
 ```
-> git clone git@github.com:wdeanmedical/ambi-candy.git
-> cd ambi-candy
+> git clone git@github.com:wdeanmedical/candy-store.git
+> cd candy-store
 > yarn install
 > yarn start
 ```
@@ -12,7 +12,7 @@
 <br>
 
 #### Live Instance:
-<a href="https://wdeanmedical.com/ambi-candy/" target="_blank" rel="noopener noreferrer">https://wdeanmedical.com/ambi-candy/</a>
+<a href="https://wdeanmedical.com/candy-store/" target="_blank" rel="noopener noreferrer">https://wdeanmedical.com/candy-store/</a>
 
 #### Application in action:
 

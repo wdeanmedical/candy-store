@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FieldShape from '../shapes/FieldShape'
-import styles from '../css/forms/ProviderForm.css'
+import styles from '../css/forms/OrderForm.css'
 
 const FormTextInput = props => {
   const { field, submitted, handleFieldChange, value, errorMessage } = props

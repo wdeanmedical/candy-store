@@ -11,7 +11,7 @@
 .title {
   font-family: 'Arial-Black', sans-serif ;
   font-size: 16px;
-  color: var(--ambiBlack);
+  color: var(--black);
   margin-bottom: 10px;
 }
 
@@ -22,21 +22,21 @@
   margin-bottom: 20px;
 }
 
-.providerResponse {
+.order {
   margin-left: 20px;
 }
 
-.providerResponseTitle {
+.orderTitle {
   font-size: 13px;
   color: var(--battleshipGrey);
   margin-top: 13px;
   margin-bottom: 18px;
 }
 
-.providerResponseItem {
+.orderItem {
   font-family: 'Arial-BoldMT', sans-serif ;
   font-size: 14px;
-  color: var(--ambiBlack);
+  color: var(--black);
   margin-top: 6px;
   margin-bottom: 6px;
 }

@@ -5,9 +5,9 @@ import Images from '@local/assets'
 import * as actions from '../actions'
 import * as Constants from '../constants/constants'
 import form from '../config/fields'
-import styles from '../css/forms/ProviderForm.css'
+import styles from '../css/forms/OrderForm.css'
 
-class ProviderForm extends Component {
+class OrderForm extends Component {
   state = {
     message: 'enter your suggestion details:',
     title: 'suggestion submission form:',
@@ -50,11 +50,11 @@ class ProviderForm extends Component {
 
   submitForm = () => {
     const { fields } = this.state
-    const providerResponse = fields
-    const { sendProviderResponse } = this.props
+    const order = fields
+    const { sendOrder } = this.props
 
     if (this.validateForm()) {
-      sendProviderResponse(providerResponse)
+      sendOrder(order)
       this.setState({
         submitted: true,
         title: 'submitted suggestion form',
@@ -90,13 +90,15 @@ class ProviderForm extends Component {
   }
 
   render() {
-    const { ambiResponse } = this.props
+    const { response } = this.props
     const { title, message, submitted, overlay } = this.state
     return (
       <div className={styles.root}>
         <div className={styles.title}>{title}</div>
         <div className={styles.subtitle}>{message}</div>
+
         {form.map(this.formMapper, this)}
+
         {submitted === false && (
           <div className={styles.formControls}>
             <button
@@ -109,16 +111,16 @@ class ProviderForm extends Component {
         )}
 
         {submitted && (
-          <div className={styles.ambiResponse}>
-            <div className={styles.ambiResponseTitle}>
+          <div className={styles.response}>
+            <div className={styles.responseTitle}>
               candy store rep response:
             </div>
-            <div className={styles.ambiResponseIcons}>
+            <div className={styles.responseIcons}>
               <img
                 width="20"
                 height="20"
                 src={
-                  ambiResponse === Constants.REJECT
+                  response === Constants.REJECT
                     ? Images.thumbsDownSubmitted
                     : Images.thumbsDown
                 }
@@ -128,7 +130,7 @@ class ProviderForm extends Component {
                 width="20"
                 height="20"
                 src={
-                  ambiResponse === Constants.ACCEPT
+                  response === Constants.ACCEPT
                     ? Images.thumbsUpSubmitted
                     : Images.thumbsUp
                 }
@@ -153,21 +155,21 @@ class ProviderForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { ambiResponse } = state.app
-  return ambiResponse || {}
+  const { response } = state.app
+  return response || {}
 }
 
-ProviderForm.propTypes = {
-  ambiResponse: PropTypes.string,
-  sendProviderResponse: PropTypes.func,
+OrderForm.propTypes = {
+  response: PropTypes.string,
+  sendOrder: PropTypes.func,
 }
 
-ProviderForm.defaultProps = {
-  ambiResponse: null,
-  sendProviderResponse: undefined,
+OrderForm.defaultProps = {
+  response: null,
+  sendOrder: undefined,
 }
 
 export default connect(
   mapStateToProps,
   actions
-)(ProviderForm)
+)(OrderForm)
