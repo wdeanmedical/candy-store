@@ -13,15 +13,15 @@
 
   --battleshipGrey: rgb(112, 118, 137);
 
-  --ambiBlack: rgb(29, 33, 41);
+  --black: rgb(29, 33, 41);
 
   --inputPlaceholderColor: rgb(154, 162, 189);
 
   --textInputBorderColor: rgb(206, 209, 217);
 
-  --ambiAzureColor: rgb(2, 158, 226);
+  --azure: rgb(2, 158, 226);
 
-  --ambiErrorColor: rgb(237, 30, 122);
+  --errorColor: rgb(237, 30, 122);
 
   --textInputDisabledBackground: rgb(247, 247, 250);
 

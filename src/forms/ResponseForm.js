@@ -4,9 +4,9 @@ import PropTypes from 'prop-types'
 import Images from '@local/assets/index'
 import * as actions from '../actions'
 import * as Constants from '../constants/constants'
-import styles from '../css/forms/ProviderResponseForm.css'
+import styles from '../css/forms/OrderForm.css'
 
-class ProviderResponseForm extends Component {
+class OrderForm extends Component {
   state = {
     acceptImage: Images.thumbsUpButton,
     rejectImage: Images.thumbsDownButton,
@@ -14,51 +14,41 @@ class ProviderResponseForm extends Component {
 
   componentDidMount() {}
 
-  sendAmbiResponse = ambiResponse => {
-    const { sendAmbiResponse } = this.props
-    sendAmbiResponse({ ambiResponse })
+  sendResponse = response => {
+    const { sendResponse } = this.props
+    sendResponse({ response })
   }
 
   render() {
-    const { providerResponse, ambiResponse } = this.props
+    const { order, response } = this.props
     const { acceptImage, rejectImage } = this.state
     return (
       <div className={styles.root}>
         <div className={styles.title}>submitted suggestion form</div>
-        {providerResponse === null && (
+        {order === null && (
           <div className={styles.subtitle}>
             currently waiting for a response...
           </div>
         )}
-        {providerResponse && (
+        {order && (
           <div>
-            <div className={styles.providerResponseTitle}>suggestion:</div>
+            <div className={styles.orderTitle}>suggestion:</div>
 
-            <div className={styles.providerResponse}>
-              <div className={styles.providerResponseItem}>
-                {providerResponse.name}
-              </div>
-              <div className={styles.providerResponseItem}>
-                {providerResponse.company}
-              </div>
-              <div className={styles.providerResponseItem}>
+            <div className={styles.order}>
+              <div className={styles.orderItem}>{order.name}</div>
+              <div className={styles.orderItem}>{order.company}</div>
+              <div className={styles.orderItem}>
                 <a
-                  href={providerResponse.website}
+                  href={order.website}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  {providerResponse.website}
+                  {order.website}
                 </a>
               </div>
-              <div className={styles.providerResponseItem}>
-                {providerResponse.email}
-              </div>
-              <div className={styles.providerResponseItem}>
-                {providerResponse.specialty}
-              </div>
-              <div className={styles.providerResponseItem}>
-                {providerResponse.price}
-              </div>
+              <div className={styles.orderItem}>{order.email}</div>
+              <div className={styles.orderItem}>{order.specialty}</div>
+              <div className={styles.orderItem}>{order.price}</div>
             </div>
 
             <div className={styles.responseForm}>
@@ -70,8 +60,7 @@ class ProviderResponseForm extends Component {
                   width="30"
                   height="30"
                   src={
-                    ambiResponse &&
-                    ambiResponse.ambiResponse === Constants.REJECT
+                    response && response.response === Constants.REJECT
                       ? Images.thumbsDownButtonSubmitted
                       : rejectImage
                   }
@@ -87,14 +76,13 @@ class ProviderResponseForm extends Component {
                   }}
                   className={styles.rejectButton}
                   alt="reject"
-                  onClick={() => this.sendAmbiResponse(Constants.REJECT)}
+                  onClick={() => this.sendResponse(Constants.REJECT)}
                 />
                 <img
                   width="30"
                   height="30"
                   src={
-                    ambiResponse &&
-                    ambiResponse.ambiResponse === Constants.ACCEPT
+                    response && response.response === Constants.ACCEPT
                       ? Images.thumbsUpButtonSubmitted
                       : acceptImage
                   }
@@ -110,7 +98,7 @@ class ProviderResponseForm extends Component {
                   }}
                   className={styles.acceptButton}
                   alt="accept"
-                  onClick={() => this.sendAmbiResponse(Constants.ACCEPT)}
+                  onClick={() => this.sendResponse(Constants.ACCEPT)}
                 />
               </div>
             </div>
@@ -122,13 +110,13 @@ class ProviderResponseForm extends Component {
 }
 
 const mapStateToProps = state => {
-  const { providerResponse, ambiResponse } = state.app
-  return { providerResponse, ambiResponse }
+  const { order, response } = state.app
+  return { order, response }
 }
 
-ProviderResponseForm.propTypes = {
-  sendAmbiResponse: PropTypes.func,
-  providerResponse: PropTypes.shape({
+OrderForm.propTypes = {
+  sendResponse: PropTypes.func,
+  order: PropTypes.shape({
     name: PropTypes.string,
     company: PropTypes.string,
     email: PropTypes.string,
@@ -136,18 +124,18 @@ ProviderResponseForm.propTypes = {
     specialty: PropTypes.string,
     price: PropTypes.string,
   }),
-  ambiResponse: PropTypes.shape({
-    ambiResponse: PropTypes.string,
+  response: PropTypes.shape({
+    response: PropTypes.string,
   }),
 }
 
-ProviderResponseForm.defaultProps = {
-  sendAmbiResponse: undefined,
-  providerResponse: {},
-  ambiResponse: null,
+OrderForm.defaultProps = {
+  sendResponse: undefined,
+  order: {},
+  response: null,
 }
 
 export default connect(
   mapStateToProps,
   actions
-)(ProviderResponseForm)
+)(OrderForm)

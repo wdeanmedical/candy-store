@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styles from '../css/App/App.css'
-import ProviderForm from '../forms/ProviderForm'
-import ProviderResponseForm from '../forms/ProviderResponseForm'
+import OrderForm from '../forms/OrderForm'
+import ResponseForm from '../forms/ResponseForm'
 
 class App extends Component {
   componentWillMount() {}
@@ -9,9 +9,9 @@ class App extends Component {
   render() {
     return (
       <div className={styles.root}>
-        <ProviderForm />
+        <OrderForm />
         <div className={styles.screenDivider} />
-        <ProviderResponseForm />
+        <ResponseForm />
       </div>
     )
   }

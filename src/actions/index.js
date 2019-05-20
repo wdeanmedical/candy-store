@@ -1,15 +1,15 @@
-import { PROVIDER_RESPONSE_SUCCESS, AMBI_RESPONSE_SUCCESS } from './types'
+import { ORDER_SUCCESS, RESPONSE_SUCCESS } from './types'
 
-export function sendProviderResponse(response) {
+export function sendOrder(order) {
   return {
-    type: PROVIDER_RESPONSE_SUCCESS,
-    payload: response,
+    type: ORDER_SUCCESS,
+    payload: order,
   }
 }
 
-export function sendAmbiResponse(response) {
+export function sendResponse(response) {
   return {
-    type: AMBI_RESPONSE_SUCCESS,
+    type: RESPONSE_SUCCESS,
     payload: response,
   }
 }

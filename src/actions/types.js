@@ -1,2 +1,2 @@
-export const PROVIDER_RESPONSE_SUCCESS = 'provider_response_success'
-export const AMBI_RESPONSE_SUCCESS = 'ambi_response_success'
+export const ORDER_SUCCESS = 'order_success'
+export const RESPONSE_SUCCESS = 'response_success'
