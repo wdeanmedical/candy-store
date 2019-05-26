@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
-import styles from '../css/App/App.css'
-import OrderForm from '../forms/OrderForm'
-import ResponseForm from '../forms/ResponseForm'
+import OrderForm from '../forms/OrderForm/OrderForm'
+import ResponseForm from '../forms/ResponseForm/ResponseForm'
+import AppStyled from './app_styles'
 
 class App extends Component {
   componentWillMount() {}
 
   render() {
     return (
-      <div className={styles.root}>
+      <AppStyled>
         <OrderForm />
-        <div className={styles.screenDivider} />
+        <AppStyled.screenDivider />
         <ResponseForm />
-      </div>
+      </AppStyled>
     )
   }
 }

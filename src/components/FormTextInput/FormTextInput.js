@@ -1,23 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FieldShape from '../shapes/FieldShape'
-import styles from '../css/forms/OrderForm.css'
+import FieldShape from '../../shapes/FieldShape'
+import TextInputStyled from './form_text_input_styles'
 
 const FormTextInput = props => {
   const { field, submitted, handleFieldChange, value, errorMessage } = props
   return (
-    <div className={styles.formItemWithMessage}>
-      <div className={styles.formItemLabel}>{field.label}</div>
-      <input
+    <TextInputStyled>
+      <TextInputStyled.itemLabel>{field.label}</TextInputStyled.itemLabel>
+      <TextInputStyled.input
+        {...props}
         type="text"
         disabled={submitted === true}
-        className={styles.formItemInput}
         placeholder={field.placeholder}
         value={value}
         onChange={e => handleFieldChange(field.name, e)}
       />
-      <div className={styles.errorMessage}>{errorMessage}</div>
-    </div>
+      <TextInputStyled.errorMsg>{errorMessage}</TextInputStyled.errorMsg>
+    </TextInputStyled>
   )
 }
 

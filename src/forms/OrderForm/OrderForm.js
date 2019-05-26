@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Images from '@local/assets'
-import * as actions from '../actions'
-import * as Constants from '../constants/constants'
-import form from '../config/fields'
-import styles from '../css/forms/OrderForm.css'
+import * as actions from '../../actions'
+import * as Constants from '../../constants/constants'
+import form from '../../config/fields'
+import OrderFormStyled from './order_form_styles'
 
 class OrderForm extends Component {
   state = {
@@ -93,32 +93,27 @@ class OrderForm extends Component {
     const { response } = this.props
     const { title, message, submitted, overlay } = this.state
     return (
-      <div className={styles.root}>
-        <div className={styles.title}>{title}</div>
-        <div className={styles.subtitle}>{message}</div>
+      <OrderFormStyled>
+        <OrderFormStyled.title>{title}</OrderFormStyled.title>
+        <OrderFormStyled.subtitle>{message}</OrderFormStyled.subtitle>
 
         {form.map(this.formMapper, this)}
 
         {submitted === false && (
-          <div className={styles.formControls}>
-            <button
-              className={styles.formSubmitButton}
-              onClick={this.submitForm}
-            >
+          <OrderFormStyled.formControls>
+            <OrderFormStyled.button onClick={this.submitForm} {...this.props}>
               Submit
-            </button>
-          </div>
+            </OrderFormStyled.button>
+          </OrderFormStyled.formControls>
         )}
 
         {submitted && (
-          <div className={styles.response}>
-            <div className={styles.responseTitle}>
+          <OrderFormStyled.response>
+            <OrderFormStyled.responseTitle>
               candy store rep response:
-            </div>
-            <div className={styles.responseIcons}>
-              <img
-                width="20"
-                height="20"
+            </OrderFormStyled.responseTitle>
+            <OrderFormStyled.responseIcons>
+              <OrderFormStyled.responseIcon
                 src={
                   response === Constants.REJECT
                     ? Images.thumbsDownSubmitted
@@ -126,9 +121,7 @@ class OrderForm extends Component {
                 }
                 alt="reject"
               />
-              <img
-                width="20"
-                height="20"
+              <OrderFormStyled.responseIcon
                 src={
                   response === Constants.ACCEPT
                     ? Images.thumbsUpSubmitted
@@ -136,20 +129,21 @@ class OrderForm extends Component {
                 }
                 alt="accept"
               />
-            </div>
-          </div>
+            </OrderFormStyled.responseIcons>
+          </OrderFormStyled.response>
         )}
-        <div className={overlay === true ? styles.overlay : styles.displayNone}>
-          <div className={styles.overlayContent}>
-            <img
+        <OrderFormStyled.overlay {...this.state}>
+          <OrderFormStyled.overlayContent>
+            <OrderFormStyled.checkMark
               src={Images.checkMark}
-              className={styles.checkMark}
               alt="check mark"
             />
-            <div className={styles.overlayText}>Form Submitted!</div>
-          </div>
-        </div>
-      </div>
+            <OrderFormStyled.overlayText>
+              Form Submitted!
+            </OrderFormStyled.overlayText>
+          </OrderFormStyled.overlayContent>
+        </OrderFormStyled.overlay>
+      </OrderFormStyled>
     )
   }
 }

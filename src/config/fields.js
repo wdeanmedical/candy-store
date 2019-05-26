@@ -1,5 +1,5 @@
 import * as Constants from '../constants/constants'
-import FormTextInput from '../components/FormTextInput'
+import FormTextInput from '../components/FormTextInput/FormTextInput'
 
 export default [
   {

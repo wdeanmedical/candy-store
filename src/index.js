@@ -5,7 +5,6 @@ import { BrowserRouter, Route } from 'react-router-dom'
 import { createStore, applyMiddleware } from 'redux'
 import App from './App/App'
 import reducers from './reducers'
-import './css/main.css'
 
 const createStoreWithMiddleware = applyMiddleware()(createStore)
 
