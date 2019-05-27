@@ -6,8 +6,10 @@ const ResponseFormStyled = styled.div`
   background-color: ${Colors.white};
   border-width: 1px;
   border-radius: 10px;
-  border-color: ${Colors.gray};
+  border-color: ${Colors.cardBorderColor};
+  box-shadow: ${Colors.cardShadow};
   padding: 20px;
+  position: relative;
 `
 
 ResponseFormStyled.controls = styled.div`

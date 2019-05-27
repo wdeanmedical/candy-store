@@ -6,7 +6,7 @@ const AppStyled = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   height: 500px;
-  width: 900px;
+  width: 1000px;
   margin: auto;
   margin-top: 30px;
 `
