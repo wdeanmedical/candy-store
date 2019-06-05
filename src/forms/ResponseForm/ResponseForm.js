@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Images from '@local/assets'
-import * as actions from '../../actions'
+import { sendOrder, sendResponse } from '../../state/actions'
 import * as Constants from '../../constants/constants'
 import ResponseFormStyled from './response_form_styles'
 
@@ -14,9 +14,9 @@ class ResponseForm extends Component {
 
   componentDidMount() {}
 
-  sendResponse = response => {
-    const { sendResponse } = this.props
-    sendResponse({ response })
+  submitForm = response => {
+    const { sendResponse: dispatchSendResponse } = this.props
+    dispatchSendResponse({ response })
   }
 
   render() {
@@ -89,7 +89,7 @@ class ResponseForm extends Component {
                     })
                   }}
                   alt="reject"
-                  onClick={() => this.sendResponse(Constants.REJECT)}
+                  onClick={() => this.submitForm(Constants.REJECT)}
                 />
                 <img
                   width="30"
@@ -110,7 +110,7 @@ class ResponseForm extends Component {
                     })
                   }}
                   alt="accept"
-                  onClick={() => this.sendResponse(Constants.ACCEPT)}
+                  onClick={() => this.submitForm(Constants.ACCEPT)}
                 />
               </ResponseFormStyled.controls>
             </ResponseFormStyled.responseForm>
@@ -125,6 +125,10 @@ const mapStateToProps = state => {
   const { order, response } = state.app
   return { order, response }
 }
+
+const mapDispatchToProps = dispatch => ({
+  sendResponse: response => dispatch(sendResponse(response)),
+})
 
 ResponseForm.propTypes = {
   sendResponse: PropTypes.func,
@@ -149,5 +153,5 @@ ResponseForm.defaultProps = {
 
 export default connect(
   mapStateToProps,
-  actions
+  mapDispatchToProps
 )(ResponseForm)

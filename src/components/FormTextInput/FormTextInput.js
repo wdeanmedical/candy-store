@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import FieldShape from '../../shapes/FieldShape'
+import FieldShape from '../../state/shapes/FieldShape'
 import TextInputStyled from './form_text_input_styles'
 
 const FormTextInput = props => {

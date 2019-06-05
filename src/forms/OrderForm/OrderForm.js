@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Images from '@local/assets'
-import * as actions from '../../actions'
+import { sendOrder } from '../../state/actions'
 import * as Constants from '../../constants/constants'
 import form from '../../config/fields'
 import OrderFormStyled from './order_form_styles'
@@ -49,12 +49,12 @@ class OrderForm extends Component {
   }
 
   submitForm = () => {
+    const { sendOrder: dispatchSendOrder } = this.props
     const { fields } = this.state
     const order = fields
-    const { sendOrder } = this.props
 
     if (this.validateForm()) {
-      sendOrder(order)
+      dispatchSendOrder(order)
       this.setState({
         submitted: true,
         title: 'submitted suggestion form',
@@ -153,6 +153,10 @@ const mapStateToProps = state => {
   return response || {}
 }
 
+const mapDispatchToProps = dispatch => ({
+  sendOrder: order => dispatch(sendOrder(order)),
+})
+
 OrderForm.propTypes = {
   response: PropTypes.string,
   sendOrder: PropTypes.func,
@@ -165,5 +169,5 @@ OrderForm.defaultProps = {
 
 export default connect(
   mapStateToProps,
-  actions
+  mapDispatchToProps
 )(OrderForm)
