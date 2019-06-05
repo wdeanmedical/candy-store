@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import Images from '@local/assets'
-import { sendOrder, sendResponse } from '../../state/actions'
+import { sendResponse } from '../../state/actions'
 import * as Constants from '../../constants/constants'
 import ResponseFormStyled from './response_form_styles'
 
